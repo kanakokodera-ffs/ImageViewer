@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ImageModel } from '../model/image-model';
 import { ImageModelService} from '../model/image-model.service';
 
-import { InMemoryDataService } from '../common/in-memory-data.service';
-import { print } from 'util';
-
 @Component({
   selector: 'app-slide-show',
   templateUrl: './slide-show.component.html',
