@@ -1,0 +1,41 @@
+.slider {
+    max-width: 30px;
+    height: auto;
+}
+
+.disabled{
+    opacity: 0.5;
+}
+/* 
+#slide-show-root {
+}
+ */
+#slide-show {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#slide-show-left {
+    margin: 20px;
+}
+
+#slide-show-main {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#slide-show-main li{
+    list-style:none;
+}
+
+#slide-show-main img{
+    width: 500px;
+    height: 500px;
+    object-fit:contain;
+}
+
+#slide-show-right {
+    margin: 20px;
+}

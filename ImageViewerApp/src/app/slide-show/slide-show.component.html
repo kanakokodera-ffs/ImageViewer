@@ -1,0 +1,15 @@
+<div id="slide-show-root">
+  <div id="slide-show">
+    <div (click)="left()" id="slide-show-left" [ngClass]="{ 'disabled': isStart }">
+      <img src="../../assets/images/left.png" class="slider">
+    </div>
+    <div id="slide-show-main">
+      <li *ngFor="let image of images; let i = index">
+        <img [src]="image.path" *ngIf="i == showIndex">
+      </li>
+    </div>
+    <div (click)="right()" id="slide-show-right" [ngClass]="{'disabled': isEnd}">
+      <img src="../../assets/images/right.png" class="slider">
+    </div>
+  </div>
+</div>
