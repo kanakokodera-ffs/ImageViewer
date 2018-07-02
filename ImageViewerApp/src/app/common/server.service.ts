@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { ImageModel } from '../model/image-model';
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -15,48 +13,49 @@ const httpOptions = {
 })
 export class ServerService {
 
-  private baseUrl = 'api/images';
+  private baseUrl = 'https://localhost:0000/api/';
 
   constructor(private http: HttpClient) { }
 
-    /** GET images from the server */
-    getImages (): Observable<ImageModel[]> {
-      // return this.http.get<ImageModel[]>(this.baseUrl)
-      //   .pipe(
-      //     tap(images => this.log(`fetched images`)),
-      //     catchError(this.handleError('getImages', []))
-      //   );
-      const images = [
-        { id: 1, path: '../../assets/images/test-image.png', tags:[]},
-        { id: 2, path: '../../assets/images/test-image2.jpg', tags:[] },
-        { id: 3, path: '../../assets/images/test-image.png', tags:[] },
-        { id: 4, path: '../../assets/images/test-image2.jpg', tags:[] },
-        { id: 5, path: '../../assets/images/test-image.png', tags:[] },
-        { id: 6, path: '../../assets/images/test-image2.jpg', tags:[] },
-        { id: 7, path: '../../assets/images/test-image.png', tags:[] },
-        { id: 8, path: '../../assets/images/test-image2.jpg', tags:[] },
-        { id: 9, path: '../../assets/images/test-image.png', tags:[] },
-        { id: 10, path: '../../assets/images/test-image2.jpg', tags:[] }
-      ];
-      return of(images);
-    }
+  /** GET images from the server */
+  getImages(): Observable<any[]> {
+    // var url: string = this.baseUrl + '/images';
+    // return this.http.get<any[]>(this.baseUrl)
+    //   .pipe(
+    //     catchError(this.handleError('getImages', []))
+    //   );
+    const images = [
+      { Id: 1, Path: '../../assets/images/test-image.png', Tags:[]},
+      { Id: 2, Path: '../../assets/images/test-image2.jpg', Tags:[] },
+      { Id: 3, Path: '../../assets/images/test-image.png', Tags:[] },
+      { Id: 4, Path: '../../assets/images/test-image2.jpg', Tags:[] },
+      { Id: 5, Path: '../../assets/images/test-image.png', Tags:[] },
+      { Id: 6, Path: '../../assets/images/test-image2.jpg', Tags:[] },
+      { Id: 7, Path: '../../assets/images/test-image.png', Tags:[] },
+      { Id: 8, Path: '../../assets/images/test-image2.jpg', Tags:[] },
+      { Id: 9, Path: '../../assets/images/test-image.png', Tags:[] },
+      { Id: 10, Path: '../../assets/images/test-image2.jpg', Tags:[] }
+    ];
+    return of(images);
+  }
 
-    private handleError<T> (operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
-  
-        // TODO: send the error to remote logging infrastructure
-        console.error(error); // log to console instead
-  
-        // TODO: better job of transforming error for user consumption
-        this.log(`${operation} failed: ${error.message}`);
-  
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
-      };
-    }
-  
-    /** Log a HeroService message with the MessageService */
-    private log(message: string) {
-      //this.messageService.add('HeroService: ' + message);
-    }
+  updateImage(id: number, json: string): Observable<any> {
+    // var url: string = this.baseUrl + '/' + id + '/';
+    // return this.http.put<any>(url, json, httpOptions)
+    //   .pipe(
+    //     catchError(this.handleError('updateImage', []))
+    //   );
+    return of({});
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }

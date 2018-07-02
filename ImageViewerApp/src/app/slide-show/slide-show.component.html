@@ -6,6 +6,9 @@
     <div id="slide-show-main">
       <li *ngFor="let image of images; let i = index">
         <img [src]="image.path" *ngIf="i == showIndex">
+        <div id="tag-view-area" *ngIf="i == showIndex">
+          <span>{{getTagString()}}</span>
+        </div>
       </li>
     </div>
     <div (click)="right()" id="slide-show-right" [ngClass]="{'disabled': isEnd}">

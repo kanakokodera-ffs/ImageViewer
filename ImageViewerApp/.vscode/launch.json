@@ -4,10 +4,11 @@
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome",
+            "name": "localhost に対して Chrome を起動",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         }
