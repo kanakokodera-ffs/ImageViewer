@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class ImageModelService {
   images: ImageModel[];
-  
+
   constructor(private serverService: ServerService) { }
 
   fetch() {
@@ -19,6 +19,11 @@ export class ImageModelService {
       .subscribe(
         images => this.images = images.map(image => this.deserialize(image))
       );
+  }
+
+  addTag(imageModel:ImageModel, tag: string):Observable<any> {
+    imageModel.addTag(tag);
+    return this.serverService.updateImage(imageModel.id, this.serialize(imageModel));
   }
 
   private deserialize(image:any):ImageModel {

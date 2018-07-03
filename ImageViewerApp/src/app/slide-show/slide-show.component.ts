@@ -16,12 +16,19 @@ export class SlideShowComponent implements OnInit {
   isStart:boolean = true;
   isEnd:boolean = false;
 
-  constructor(private imageModelService: ImageModelService) { }
+  constructor(private imageModelService: ImageModelService, private observerService: ObserverService) { }
 
   ngOnInit() {
     this.imageModelService.fetch();
     this.images = this.imageModelService.images;
     this.setIsBound();
+
+    this.observerService.addEventLister('addTagEvent', this, (tag) => {
+      this.imageModelService.addTag(this.images[this.showIndex], tag)
+      .subscribe(
+        () => this.observerService.fireEvent('updatedTagEvent')
+      );
+    });
   }
 
   left() {
@@ -41,5 +48,13 @@ export class SlideShowComponent implements OnInit {
   private setIsBound() {
     this.isStart = (this.showIndex == 0);
     this.isEnd = (this.showIndex == (this.images.length - 1));
+  }
+
+  getTagString():string {
+    var tagString:string = '';
+    this.images[this.showIndex].tags.forEach(tag => {
+        tagString += ('[' + tag + ']');
+    });
+    return tagString;
   }
 }
