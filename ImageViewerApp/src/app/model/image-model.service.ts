@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ImageModelService {
-  images: ImageModel[];
+
   constructor() { }
 
   private deserialize(image:any):ImageModel {
