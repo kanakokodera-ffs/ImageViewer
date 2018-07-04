@@ -11,17 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class ImageModelService {
   images: ImageModel[];
-  
   constructor(private serverService: ServerService) { }
 
-  fetch() {
+  fetch(): Observable<ImageModel[]> {
     return this.serverService.getImages()
-      .subscribe(
-        images => this.images = images.map(image => this.deserialize(image))
+      .pipe(
+        tap(images => this.images = images.map(image => this.deserialize(image)))
       );
   }
 
-  private deserialize(image:any):ImageModel {
+  private deserialize(image: any): ImageModel {
     return  deserialize<ImageModel>(ImageModel, {
       id: image.Id,
       path: image.Path,
@@ -29,11 +28,11 @@ export class ImageModelService {
     });
   }
 
-  private serialize(imageModel:ImageModel):string {
+  private serialize(imageModel: ImageModel): string {
     return serialize({
-      Id:imageModel.id,
-      Path:imageModel.path,
-      Tags:imageModel.tags
+      Id: imageModel.id,
+      Path: imageModel.path,
+      Tags: imageModel.tags
     });
   }
 }
