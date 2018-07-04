@@ -11,22 +11,29 @@ import { Observable } from 'rxjs';
 })
 export class ImageModelService {
   images: ImageModel[];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 420887e3c6787dbe3720c5b52cc3d4b1951ea446
   constructor(private serverService: ServerService) { }
 
-  fetch() {
+  fetch(): Observable<ImageModel[]> {
     return this.serverService.getImages()
-      .subscribe(
-        images => this.images = images.map(image => this.deserialize(image))
+      .pipe(
+        tap(images => this.images = images.map(image => this.deserialize(image)))
       );
   }
 
+<<<<<<< HEAD
   addTag(imageModel:ImageModel, tag: string):Observable<any> {
     imageModel.addTag(tag);
     return this.serverService.updateImage(imageModel.id, this.serialize(imageModel));
   }
 
   private deserialize(image:any):ImageModel {
+=======
+  private deserialize(image: any): ImageModel {
+>>>>>>> 420887e3c6787dbe3720c5b52cc3d4b1951ea446
     return  deserialize<ImageModel>(ImageModel, {
       id: image.Id,
       path: image.Path,
@@ -34,11 +41,11 @@ export class ImageModelService {
     });
   }
 
-  private serialize(imageModel:ImageModel):string {
+  private serialize(imageModel: ImageModel): string {
     return serialize({
-      Id:imageModel.id,
-      Path:imageModel.path,
-      Tags:imageModel.tags
+      Id: imageModel.id,
+      Path: imageModel.path,
+      Tags: imageModel.tags
     });
   }
 }
